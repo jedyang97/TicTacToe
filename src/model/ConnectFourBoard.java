@@ -39,6 +39,14 @@ public class ConnectFourBoard extends Board {
         this.setSpaces(spaces);
     }
 
+    public void take(Space next) throws Exception {
+        if (!next.isValid()) {
+            throw new Exception("Invalid space!");
+        }
+        next.setToken(getCurrentPlayer());
+        next.setValid(false);
+    }
+
     @Override
     public boolean checkWin() {
         for (int i = 0; i < this.getSize() - 3; i++) {
