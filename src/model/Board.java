@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * An abstraction of the game board.
  */
 public abstract class Board {
+
     private int size;
     private char currentPlayer;
     private Space[][] spaces;
@@ -43,14 +44,38 @@ public abstract class Board {
         this.size = size;
     }
 
+    /**
+     * @return all spaces that are valid
+     */
     public abstract ArrayList<Space> validSpaceList();
 
+    /**
+     * @return true if some player has won the game
+     */
     public abstract boolean checkWin();
 
-    public abstract void runOnce();
+    /**
+     * Refresh the board after one run
+     */
+    public void runOnce() {
+        if (this.getCurrentPlayer() == 'A') {
+            this.setCurrentPlayer('B');
+        } else {
+            this.setCurrentPlayer('A');
+        }
+        if (checkWin() || (validSpaceList().size() == 0)) {
+            this.setGameOver(true);
+        }
+    }
 
+    /**
+     * A method to simulate the taking of a space
+     *
+     * @param next the space to take in the next run
+     * @throws Exception if the space passed in is not valid
+     */
     public void take(Space next) throws Exception {
-        if (!next.isValid()){
+        if (!next.isValid()) {
             throw new Exception("Invalid space!");
         }
         next.setToken(getCurrentPlayer());

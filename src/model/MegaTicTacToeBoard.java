@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /**
- * A 6 * 6 Mega Tic Tac Toe implementation of Board.
+ * A 6 * 6 Mega Tic Tac Toe implementation of Board
  * ­ "Connection" length: 3
  * ­ Board size: 8x8
  * ­ Acceptable "connection" directions: top­to­bottom, left­to­right.
@@ -34,18 +34,6 @@ public class MegaTicTacToeBoard extends Board {
             }
         }
         this.setSpaces(spaces);
-    }
-
-    @Override
-    public void runOnce() {
-        if (this.getCurrentPlayer() == 'A') {
-            this.setCurrentPlayer('B');
-        } else {
-            this.setCurrentPlayer('A');
-        }
-        if (checkWin() || (validSpaceList().size() == 0)) {
-            this.setGameOver(true);
-        }
     }
 
     @Override
@@ -100,7 +88,7 @@ public class MegaTicTacToeBoard extends Board {
     }
 
     private boolean checkRowCol(char space1, char space2, char space3) {
-        return ((space1 != '-') && (space1 == space2) && (space2 == space3));
+        return (space1 != '-') && (space1 == space2) && (space2 == space3);
     }
 
 }
